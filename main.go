@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/urfave/cli"
@@ -24,12 +25,12 @@ func main() {
 			Usage: "Say hello world!",
 			Action: func(c *cli.Context) error {
 				fmt.Println("hello world!")
-				return
+				return nil
 			},
 		},
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		fmt.Fatalf("error: %v", err)
+		log.Fatalf("error: %v", err)
 	}
 }
