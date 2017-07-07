@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/urfave/cli"
 )
@@ -26,5 +27,9 @@ func main() {
 				return
 			},
 		},
+	}
+
+	if err := app.Run(os.Args); err != nil {
+		fmt.Fatalf("error: %v", err)
 	}
 }
