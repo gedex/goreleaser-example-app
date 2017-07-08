@@ -28,6 +28,14 @@ func main() {
 				return nil
 			},
 		},
+		{
+			Name:  "hello-name",
+			Usage: "say your <name>",
+			Action: func(c *cli.Context) error {
+				fmt.Println("hello", c.Args().First())
+				return nil
+			},
+		},
 	}
 
 	if err := app.Run(os.Args); err != nil {
