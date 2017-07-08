@@ -1,0 +1,63 @@
+homepage: &homepage https://akeda.blog
+description: &description Example app to play with goreleaser
+project_name: goreleaser-example-app
+release:
+  github:
+    owner: gedex
+    name: goreleaser-example-app
+builds:
+- goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - amd64
+  - "386"
+  goarm:
+  - "6"
+  main: .
+  ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+  binary: goreleaser-example-app
+  hooks: {}
+archive:
+  format: tar.gz
+  name_template: '{{ .Binary }}_{{.Version}}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{
+    .Arm }}{{ end }}'
+  files:
+  - licence*
+  - LICENCE*
+  - license*
+  - LICENSE*
+  - readme*
+  - README*
+  - changelog*
+  - CHANGELOG*
+  replacements:
+    386: i386
+    amd64: x86_64
+  format_overrides:
+    - goos: windows
+      format: zip
+brew:
+  github:
+    owner: gedex
+    name: homebrew-goreleaser-example-app
+  folder: Formula
+  homepage: *homepage
+  description: *description
+  dependencies:
+    - git
+fpm:
+  homepage: *homepage
+  description: *description
+  maintainer: Akeda Bagus <admin@gedex.web.id>
+  license: MIT
+  vendor: GoReleaserExampleApp
+  formats:
+    - deb
+  dependencies:
+    - git
+snapshot:
+  name_template: SNAPSHOT-{{ .Commit }}
+build:
+  hooks: {}
