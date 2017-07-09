@@ -41,7 +41,7 @@ archive:
 brew:
   github:
     owner: gedex
-    name: homebrew-goreleaser-example-app
+    name: homebrew-tap
   folder: Formula
   homepage: *homepage
   description: *description
